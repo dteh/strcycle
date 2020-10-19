@@ -67,9 +67,6 @@ func FromStringWithModifiers(base string, mods []StringModifier, indicateFinishe
 	base = strings.ToLower(base)
 	it := newIter(indicateFinished)
 	go func() {
-		// Generate components to calc the cartesian product
-		// components := []string{}
-
 		mask := make([]int, len(base))
 		for i := 0; i < len(base); i++ {
 			char := string(base[i])
@@ -82,13 +79,6 @@ func FromStringWithModifiers(base string, mods []StringModifier, indicateFinishe
 			}
 		}
 		maskLimit := len(mods)
-
-		// for _, mod := range mods {
-		// 	components = append(
-		// 		components,
-		// 		mod(base),
-		// 	)
-		// }
 
 		for {
 			mask = incrementMask(mask, maskLimit)
