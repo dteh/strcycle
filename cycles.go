@@ -13,6 +13,16 @@ type Iter struct {
 	indicateFinished bool
 }
 
+// Next value from iterator
+func (it *Iter) Next() interface{} {
+	return <-it.channel
+}
+
+// NextString get next value cast as a string
+func (it *Iter) NextString() string {
+	return (<-it.channel).(string)
+}
+
 func newIter(indicateFinished bool) Iter {
 	i := Iter{
 		make(chan interface{}),
